@@ -54,10 +54,17 @@ def message_text(event):
     file_name = "./data.txt"
     file = open(file_name)
     data = file.read()
-    line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text="=== yahooにゅーす ==="+"\n"+data+"おわりだよ〜"+"\n")
+    if event.message.text == "やふーにゅーす":
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text="=== yahooにゅーす ==="+"\n"+data+"おわりだよ〜"+"\n")
         )
+    else:
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text="「やふーにゅーす」って言ってみて！")
+        )
+
 if __name__ == "__main__":
     port = int(os.getenv("PORT", 5000))
     app.run(host="0.0.0.0", port=port)

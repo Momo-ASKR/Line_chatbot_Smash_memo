@@ -50,7 +50,7 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def message_text(event):
-    data = yahooNews()
+    data = yahooNews.news()
     line_bot_api.reply_message(
         event.reply_token,
         #TextSendMessage(text=event.message.text+"アイウエオ"))

@@ -50,6 +50,7 @@ def message_text(event):
         event.reply_token,
         #TextSendMessage(text=event.message.text+"アイウエオ"))
         TextSendMessage(text=data)
+        )
 if __name__ == "__main__":
     port = int(os.getenv("PORT", 5000))
     app.run(host="0.0.0.0", port=port)

@@ -18,8 +18,12 @@ def news():
         #soup.find_allを用いてリンク先が「news.yahoo.co.jp/pickup」の項目を全て取得     
         elems = soup.find_all(href=re.compile("news.yahoo.co.jp/pickup"))
         for e in elems:
-            e = str(e) + (e.getText())                                                          
+            #e = str(e) + (e.getText())
+            e = e.getText()
+    print(e)
     return e
+
+#print(news())
 
 #file_name = "./data.txt"
 #try:

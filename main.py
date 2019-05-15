@@ -50,7 +50,10 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def message_text(event):
-    data = yahooNews.news()
+    yahooNews.news()
+    file_name = "./data.txt"
+    file = open(file_name)
+    data = file.read()
     line_bot_api.reply_message(
         event.reply_token,
         #TextSendMessage(text=event.message.text+"アイウエオ"))

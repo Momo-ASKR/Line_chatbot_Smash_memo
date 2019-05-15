@@ -15,14 +15,24 @@ def news():
     with open('originDataOld.html', mode='w', encoding = 'utf-8') as fw:
         fw.write(soup.prettify())
         
-        #soup.find_allを用いてリンク先が「news.yahoo.co.jp/pickup」の項目を全て取得     
-        elems = soup.find_all(href=re.compile("news.yahoo.co.jp/pickup"))
-        for e in elems:
-            #e = str(e) + (e.getText())
-            e = e.getText()
-    print(e)
-    return e
+    #soup.find_allを用いてリンク先が「news.yahoo.co.jp/pickup」の項目を全て取得     
+    elems = soup.find_all(href=re.compile("news.yahoo.co.jp/pickup"))
+    #for e in elems:
+        #e = str(e) + (e.getText())
+    #    e = e.getText()
+    #print(e)
+    #return e
 
+    file_name = "./data.txt"
+    try:
+        file = open(file_name, 'w')
+        for e in elems:
+            file.write(e.getText()+"\n")
+    except Exception as e:
+        file.write("しっぱい")
+    finally:
+        file.close()
+    
 #print(news())
 
 #file_name = "./data.txt"

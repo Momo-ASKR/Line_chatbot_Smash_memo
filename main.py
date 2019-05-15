@@ -43,12 +43,13 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def message_text(event):
+    file_name =  "./data.txt"
+    file = open(file_name)
+    data = file.read()
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=event.message.text+"アイウエオ")
-    )
-
-
+        #TextSendMessage(text=event.message.text+"アイウエオ"))
+        TextSendMessage(text=data)
 if __name__ == "__main__":
     port = int(os.getenv("PORT", 5000))
     app.run(host="0.0.0.0", port=port)

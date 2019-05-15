@@ -56,7 +56,7 @@ def message_text(event):
     data = file.read()
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=data+"/n"+"/n"+"おわりだよ〜"+"\n")
+        TextSendMessage(text=data+"/n"+"おわりだよ〜"+"\n")
         )
 if __name__ == "__main__":
     port = int(os.getenv("PORT", 5000))

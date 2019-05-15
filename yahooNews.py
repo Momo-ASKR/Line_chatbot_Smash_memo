@@ -27,7 +27,7 @@ def news():
     try:
         file = open(file_name, 'w')
         for e in elems:
-            file.write(e.getText()+"\n")
+            file.write(e.getText()+"\n"+" "+"\n")
     except Exception as e:
         file.write("しっぱい")
     finally:

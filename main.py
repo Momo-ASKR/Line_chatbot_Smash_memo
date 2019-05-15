@@ -7,6 +7,13 @@ from linebot import (LineBotApi, WebhookHandler)
 from linebot.exceptions import (InvalidSignatureError)
 from linebot.models import (MessageEvent, TextMessage, TextSendMessage)
 
+import requests
+from bs4 import BeautifulSoup
+import re
+
+import yahooNews
+yahooNews.news()
+
 app = Flask(__name__)
 
 # get channel_secret and channel_access_token from your environment variable
@@ -43,13 +50,10 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def message_text(event):
-    file_name =  "app/data.txt"
-    file = open(file_name)
-    data = file.read()
     line_bot_api.reply_message(
         event.reply_token,
         #TextSendMessage(text=event.message.text+"アイウエオ"))
-        TextSendMessage(text=data)
+        TextSendMessage(text=event.message.text+"\n"+data)
         )
 if __name__ == "__main__":
     port = int(os.getenv("PORT", 5000))

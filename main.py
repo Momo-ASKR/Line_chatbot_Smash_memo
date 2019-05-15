@@ -43,7 +43,7 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def message_text(event):
-    file_name =  "./data.txt"
+    file_name =  "app/data.txt"
     file = open(file_name)
     data = file.read()
     line_bot_api.reply_message(

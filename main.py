@@ -59,8 +59,8 @@ def message_text(event):
             event.reply_token,
             TextSendMessage(text="=== yahooにゅーす ==="+"\n"+data+"おわりだよ〜"+"\n")
         )
-    elif "./{}.text".format(event.message.text):
-        sp_name = "./{}.text".format(event.message.text)
+    elif "./{}.txt".format(event.message.text):
+        sp_name = "./{}.txt".format(event.message.text)
         sp = open(sp_name)
         sp_data = sp.read()
         line_bot_api.reply_message(

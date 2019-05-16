@@ -59,7 +59,7 @@ def message_text(event):
             event.reply_token,
             TextSendMessage(text="=== yahooにゅーす ==="+"\n"+data+"おわりだよ〜"+"\n")
         )
-    elif "./{}.txt".format(event.message.text):
+    elif os.path.exists("./{}.txt".format(event.message.text)):
         sp_name = "./{}.txt".format(event.message.text)
         sp = open(sp_name)
         sp_data = sp.read()

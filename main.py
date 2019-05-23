@@ -11,6 +11,8 @@ import requests
 from bs4 import BeautifulSoup
 import re
 
+import urllib.request
+
 import yahooNews
 yahooNews.news()
 
@@ -67,10 +69,19 @@ def message_text(event):
             event.reply_token,
             TextSendMessage(text="=== {}メモ ===".format(event.message.text)+"\n"+sp_data+"おわりだよ〜"+"\n")
         )
+    elif event.message.text == "スマメモ":
+        url = 'https://smamemo.herokuapp.com/'
+        req = urllib.request.Request(url)
+        with urllib.request.urlopen(req) as res:
+            body = res.read()
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=body)
     else:
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text="「やふーにゅーす」って言ってみて！")
+            
         )
 
 if __name__ == "__main__":

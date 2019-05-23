@@ -74,6 +74,7 @@ def message_text(event):
         req = urllib.request.Request(url)
         with urllib.request.urlopen(req) as res:
             body = res.read()
+            body = str(body)
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=body)

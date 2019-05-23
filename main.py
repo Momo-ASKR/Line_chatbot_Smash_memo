@@ -73,7 +73,7 @@ def message_text(event):
         url = 'https://smamemo.herokuapp.com/'
         req = urllib.request.Request(url)
         with urllib.request.urlopen(req) as res:
-            body = json.load(res)
+            body = res.read().decode("utf-8")
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=body)

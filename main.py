@@ -1,5 +1,6 @@
 import os
 import sys
+import codecs
 from argparse import ArgumentParser
 
 from flask import Flask, request, abort
@@ -15,6 +16,8 @@ import urllib.request
 
 import yahooNews
 yahooNews.news()
+
+sys.stdout = codecs.getwriter("utf-8")(sys.stdout)
 
 app = Flask(__name__)
 

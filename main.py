@@ -64,6 +64,7 @@ def message_text(event):
             event.reply_token,
             TextSendMessage(text="=== yahooにゅーす ==="+"\n"+data+"おわりだよ〜"+"\n")
         )
+        print(type(event.message.text))
     elif os.path.exists("./{}.txt".format(event.message.text)):
         sp_name = "./{}.txt".format(event.message.text)
         sp = open(sp_name)
@@ -73,7 +74,9 @@ def message_text(event):
             TextSendMessage(text="=== {}メモ ===".format(event.message.text)+"\n"+sp_data+"おわりだよ〜"+"\n")
         )
     elif event.message.text:
-        url = 'https://smamemo.herokuapp.com/test_api/{}'.format(event.message.text)
+        p = envent.message.text
+        fig = p.decode("utf-8")
+        url = 'https://smamemo.herokuapp.com/test_api/'+ fig
         res = urllib.request.urlopen(url)
         body = res.read().decode("utf-8")
         print(body)

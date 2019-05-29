@@ -80,10 +80,10 @@ def message_text(event):
         body = json.loads(res.read().decode("utf-8"))
         print(body)
         if body["result"]:
-            send_text = body["memos"].join("\n")
+            send_text = "\n".join(body["memos"])
         else:
             send_text = "404NotFound"
-        
+            
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=send_text)

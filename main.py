@@ -77,12 +77,15 @@ def message_text(event):
         fighter = urllib.parse.quote(event.message.text)
         url = 'https://smamemo.herokuapp.com/test_api/'+ fighter
         res = urllib.request.urlopen(url)
-        body = res.read().decode("utf-8")
+        body = json.loads(res.read().decode("utf-8"))
         print(body)
+        send_text = ""
+        for line in body["memos"]:
+            send_text += line + "\n"
 
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=body)
+            TextSendMessage(text=send_text)
         )
     else:
         line_bot_api.reply_message(

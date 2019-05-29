@@ -69,8 +69,9 @@ def message_text(event):
             event.reply_token,
             TextSendMessage(text="=== {}メモ ===".format(event.message.text)+"\n"+sp_data+"おわりだよ〜"+"\n")
         )
-    elif event.message.text == "スマメモ":
-        url = 'https://smamemo.herokuapp.com/'
+    elif event.message.text:
+        p = event.message.text
+        url = 'https://smamemo.herokuapp.com/test_api/'+ p
         req = urllib.request.Request(url)
         with urllib.request.urlopen(req) as res:
             body = res.read().decode("utf-8")

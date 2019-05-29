@@ -73,7 +73,8 @@ def message_text(event):
     elif event.message.text:
         url = 'https://smamemo.herokuapp.com/test_api/{}'.format(event.message.text)
         req = urllib.request.Request(url)
-        body = json.loads(req.read().decode('utf-8'))
+        with urllib.request.urlopen(req) as res:
+            body = res.read()
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=body)

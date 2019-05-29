@@ -78,10 +78,10 @@ def message_text(event):
         with urllib.request.urlopen(req) as res:
             body = json.dumps(res)
             print(body)
-            enc = body.read().decode("utf-8"))
+
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text=enc)
+            TextSendMessage(text=body)
         )
     else:
         line_bot_api.reply_message(

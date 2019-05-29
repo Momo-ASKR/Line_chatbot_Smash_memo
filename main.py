@@ -74,7 +74,7 @@ def message_text(event):
             TextSendMessage(text="=== {}メモ ===".format(event.message.text)+"\n"+sp_data+"おわりだよ〜"+"\n")
         )
     elif event.message.text:
-        p = envent.message.text
+        p = event.message.text
         fig = p.decode("utf-8")
         url = 'https://smamemo.herokuapp.com/test_api/'+ fig
         res = urllib.request.urlopen(url)

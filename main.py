@@ -70,8 +70,7 @@ def message_text(event):
             TextSendMessage(text="=== {}メモ ===".format(event.message.text)+"\n"+sp_data+"おわりだよ〜"+"\n")
         )
     elif event.message.text:
-        p = event.message.text
-        url = 'https://smamemo.herokuapp.com/test_api/'+ p
+        url = 'https://smamemo.herokuapp.com/test_api/{}'.format(event.message.text)
         req = urllib.request.Request(url)
         with urllib.request.urlopen(req) as res:
             body = res.read().decode("utf-8")

@@ -79,10 +79,11 @@ def message_text(event):
         res = urllib.request.urlopen(url)
         body = json.loads(res.read().decode("utf-8"))
         print(body)
-        send_text = ""
-        for line in body["memos"]:
-            send_text += line + "\n"
-
+        if body["result"]:
+            send_text = body["memos"].join("\n")
+        else:
+            send_text = "404NotFound"
+        
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=send_text)

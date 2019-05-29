@@ -1,6 +1,5 @@
 import os
 import sys
-import codecs
 from argparse import ArgumentParser
 
 from flask import Flask, request, abort
@@ -17,7 +16,6 @@ import urllib.request
 import yahooNews
 yahooNews.news()
 
-sys.stdout = codecs.getwriter("utf-8")(sys.stdout)
 
 app = Flask(__name__)
 
@@ -75,8 +73,7 @@ def message_text(event):
     elif event.message.text:
         url = 'https://smamemo.herokuapp.com/test_api/{}'.format(event.message.text)
         req = urllib.request.Request(url)
-        with urllib.request.urlopen(req) as res:
-            body = res.read().decode("utf-8")
+        body = json.loads(req.read().decode('utf-8'))
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=body)

@@ -74,6 +74,13 @@ def message_text(event):
             TextSendMessage(text="=== {}メモ ===".format(event.message.text)+"\n"+sp_data+"おわりだよ〜"+"\n")
         )
     elif event.message.text:
+
+        if isinstance(event.source, SourceUser):
+            profile = line_bot_api.get_profile(event.source.user_id)
+            user_id = event.source.user_id
+            user_disp_name = profile.display_name
+            print("id" + ":" + user_id + " " + "アカウント名" + ":" + user_disp_name)
+        
         fighter = urllib.parse.quote(event.message.text)
         url = 'https://smamemo.herokuapp.com/test_api/'+ fighter
         res = urllib.request.urlopen(url)

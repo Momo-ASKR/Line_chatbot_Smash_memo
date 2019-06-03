@@ -75,11 +75,11 @@ def message_text(event):
         )
     elif event.message.text:
 
-        if isinstance(event.source, SourceUser):
-            profile = line_bot_api.get_profile(event.source.user_id)
-            user_id = event.source.user_id
-            user_disp_name = profile.display_name
-            print("id" + ":" + user_id + " " + "アカウント名" + ":" + user_disp_name)
+        profile = line_bot_api.get_profile(event.source.user_id)
+        print('表示名 {}'.format(profile.display_name))
+        print('ID {}'.format(profile.user_id))
+        print('画像URL {}'.format(profile.image_url))
+        print('ステータスメッセージ {}'.format(profile.status_message))
         
         fighter = urllib.parse.quote(event.message.text)
         url = 'https://smamemo.herokuapp.com/test_api/'+ fighter

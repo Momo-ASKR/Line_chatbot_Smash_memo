@@ -78,7 +78,6 @@ def message_text(event):
         profile = line_bot_api.get_profile(event.source.user_id)
         print('表示名 {}'.format(profile.display_name))
         print('ID {}'.format(profile.user_id))
-        print('画像URL {}'.format(profile.image_url))
         print('ステータスメッセージ {}'.format(profile.status_message))
         
         fighter = urllib.parse.quote(event.message.text)

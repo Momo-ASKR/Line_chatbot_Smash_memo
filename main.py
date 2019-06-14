@@ -76,7 +76,7 @@ def message_text(event):
     elif event.message.text:
         profile = line_bot_api.get_profile(event.source.user_id)
         lineid = 'LINE_ID {}'.format(profile.user_id)
-        
+
 
         fighter = urllib.parse.quote(event.message.text)
         url = 'https://smamemo.herokuapp.com/test_api/'+ fighter
@@ -96,8 +96,14 @@ def message_text(event):
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text="「やふーにゅーす」って言ってみて！")
-
         )
+    if event.message.text == "スマメモ新規登録" or "スマメモ登録":
+        profile = line_bot_api.get_profile(event.source.user_id)
+        lineid = 'LINE_ID {}, LINE_PROFILE {}'.format(profile.user_id, event.source.user_id)
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=lineid)
+
 
 if __name__ == "__main__":
     port = int(os.getenv("PORT", 5000))

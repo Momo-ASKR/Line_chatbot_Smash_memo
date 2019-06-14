@@ -74,12 +74,12 @@ def message_text(event):
             TextSendMessage(text="=== {}メモ ===".format(event.message.text)+"\n"+sp_data+"おわりだよ〜"+"\n")
         )
     elif event.message.text:
-
         profile = line_bot_api.get_profile(event.source.user_id)
-        print('表示名 {}'.format(profile.display_name))
-        print('ID {}'.format(profile.user_id))
-        print('ステータスメッセージ {}'.format(profile.status_message))
-        
+        lineid = 'LINE_ID {}'.format(profile.user_id)
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=lineid)
+
         fighter = urllib.parse.quote(event.message.text)
         url = 'https://smamemo.herokuapp.com/test_api/'+ fighter
         res = urllib.request.urlopen(url)
@@ -89,7 +89,7 @@ def message_text(event):
             send_text = "\n".join(body["memos"])
         else:
             send_text = "404NotFound"
-            
+
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=send_text)
@@ -98,7 +98,7 @@ def message_text(event):
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text="「やふーにゅーす」って言ってみて！")
-            
+
         )
 
 if __name__ == "__main__":

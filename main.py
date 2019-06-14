@@ -73,7 +73,7 @@ def message_text(event):
             event.reply_token,
             TextSendMessage(text="=== {}メモ ===".format(event.message.text)+"\n"+sp_data+"おわりだよ〜"+"\n")
         )
-    elif event.message.text == "スマメモ新規登録" or "スマメモ登録":
+    elif event.message.text:
         profile = line_bot_api.get_profile(event.source.user_id)
         lineid = 'LINE_ID {}'.format(profile.user_id)
         line_bot_api.reply_message(
